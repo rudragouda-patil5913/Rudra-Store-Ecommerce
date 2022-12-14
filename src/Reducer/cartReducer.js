@@ -6,13 +6,14 @@ const cartReducer = (state,action) => {
     let { id, color, amount, product } = action.payload;
 
     // tackle the existing product
+   
 
-    let existingProduct = state.cart.find(
+    let existingProduct = state.cart?.find(
       (curItem) => curItem.id === id + color
     );
 
     if (existingProduct) {
-      let updatedProduct = state.cart.map((curElem) => {
+      let updatedProduct = state.cart?.map((curElem) => {
         if (curElem.id === id + color) {
           let newAmount = curElem.amount + amount;
 
@@ -103,7 +104,7 @@ const cartReducer = (state,action) => {
   }
 
   if (action.type === "CART_ITEM_PRICE_TOTAL") {
-    let { total_item, total_price } = state.cart.reduce((accum, curElem) => {
+    let { total_item, total_price } = (state.cart ?? []).reduce((accum, curElem) => {
         let { price, amount } = curElem;
 
         accum.total_item += amount;

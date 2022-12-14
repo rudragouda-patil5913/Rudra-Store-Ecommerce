@@ -13,7 +13,7 @@ const Cart = () => {
  
   const {isAuthenticated, user} = useAuth0();
 
-  if(cart.length === 0){
+  if(cart && cart.length === 0){
     return(
       <div>
         <EmptyDiv>
